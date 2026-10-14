@@ -1,0 +1,10 @@
+# Physical HID mouse bridge (ESP32-P4 / RP2040 presenting as an Endgame Gear
+# OP1 8K v2). Grants the active user and the 'input' group write access to the
+# injection /dev/hidraw node.
+#
+# Install:
+#   sudo cp 70-physical-hid-mouse.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules && sudo udevadm trigger
+#
+# Change the VID/PID here if your firmware clones a different mouse.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3367", ATTRS{idProduct}=="1978", MODE="0660", GROUP="input", TAG+="uaccess"
